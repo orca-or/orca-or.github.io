@@ -1,0 +1,497 @@
+@media only  screen   and  (min-width:1275px) and (max-width:1572px) { 
+
+   
+    body{ 
+
+       max-width:100%;
+       overflow-y: scroll;
+    
+    }
+
+           
+.mo{ 
+
+    width:100%;
+     margin: 0%;
+   
+ }
+ 
+
+
+
+.dados{ 
+
+max-width: 100%;
+
+left: 2%;
+position: relative;
+ 
+ 
+}
+
+   
+form{ 
+
+    max-width:100%;
+      
+
+}
+   
+
+  
+table{ 
+
+    max-width:100%;
+    
+      
+
+}
+.centro{ 
+
+ 
+  
+      margin: 0px; 
+  max-width:100%;
+   
+   left: 10%;
+   position: relative;
+   
+  
+ 
+ 
+
+}
+
+.lista{ 
+    display: none;
+
+
+
+}
+
+
+
+.pub{ 
+    
+      display: none;
+    
+     
+
+
+}
+
+.menu-i{ 
+            
+    display: none;
+     
+       
+  
+  
+  }
+
+
+  .menu-t{ 
+    
+    text-align: center;
+     
+       
+  
+  
+  }
+
+  
+  .dropdown1{ 
+            
+    display:none;
+     
+       
+  
+  
+  }
+
+  
+  
+
+
+
+   
+
+}
+@media only  screen   and  (min-width:1572px) and (max-width:1885px) { 
+
+
+
+    .dados{ 
+
+        max-width: 100%;
+        left: 10%;
+        position: relative;
+        
+          
+         
+         
+        }
+        
+           
+        form{ 
+        
+            max-width:100%;
+              
+        
+        }
+           
+        .centro{ 
+        
+           
+          
+         
+              margin: 0px; 
+          max-width:100%;
+          
+           left: 10%;
+           position: relative;
+           
+           
+         
+         
+        
+        }
+        
+        .lista{ 
+            display: none;
+      
+        
+        
+        }
+        
+        
+        
+        .pub{ 
+            
+            position: relative;
+            left: 10%;
+            max-width: 100%;
+        
+        }
+
+          
+table{ 
+
+    max-width:100%;
+ 
+      
+
+}
+
+       
+.mo{ 
+
+    overflow: auto;
+    width:100%;
+     margin: 0%;
+    
+ }
+
+ 
+  
+ .dropdown1{ 
+            
+    display:none;
+  }
+  
+ 
+
+ 
+
+}
+
+
+
+@media only  screen   and   (min-width:930px)and (max-width:1385px) { 
+
+
+
+         
+.mo{ 
+
+    width:100%;
+     margin: 0%;
+     
+ }
+ 
+ input{ 
+ 
+     max-width:100%;
+      margin: 0%;
+  }
+  
+ 
+      
+      
+table{ 
+
+    max-width:100%;
+   
+      
+
+}
+
+    .dados{ 
+       max-width: 100%;
+       left: 5%;
+       position: relative;
+        
+          
+         
+         
+        }
+        
+           
+        form{ 
+        
+            max-width:100%;
+              
+        
+        }
+           
+        .centro{ 
+        
+         
+          
+          
+          margin: 0px; 
+          max-width:100%;
+           
+           position: relative;
+         
+         
+        
+        }
+        
+        .lista{ 
+            display: none;
+        
+        
+        
+        }
+        
+        
+        
+        .pub{ 
+            
+          display: none;
+           
+             
+        
+        
+        }
+
+        .menu-i{ 
+            
+            display: none;
+             
+               
+          
+          
+          }
+
+
+          .menu-t{ 
+            
+            text-align: center;
+             
+               
+          
+          
+          }
+          .pub2{ 
+            
+         
+           
+            max-width: 100%;
+           margin-left: 0px;
+        
+        
+        }
+
+         
+           
+
+}
+
+
+
+
+@media only  screen   and   (max-width:1275px) { 
+
+
+      
+.centro-item{ 
+
+    max-width:100%;
+    margin: 0%;
+    overflow-x: hidden;
+   flex: auto;
+   
+   
+}
+
+     
+img{ 
+
+    max-width:100%;
+     
+ }
+
+input{    
+
+    max-width:100%;
+     margin: 0%;
+ }
+ table{ 
+
+   max-width:100%;
+     margin: 0%;
+   
+  
+   
+ }
+
+     
+
+    .dados{ 
+       display: none;
+       
+        
+          
+         
+         
+        }
+        
+           
+        form{ 
+        
+            max-width:100%;
+            overflow-x: hidden;
+              
+        
+        }
+           
+        .centro{ 
+        
+         
+          
+           
+           
+            
+          max-width:100%;
+           
+          
+          
+           
+         
+         
+        
+        }
+        
+        .lista{ 
+            display: none;
+        
+        
+        
+        }
+        
+        
+        
+        .pub{ 
+            
+         
+           
+             display: none;
+        
+        
+        }
+        .pub2{ 
+            
+         
+           
+         max-width: 100%;
+        margin-left: 0px;
+     
+     
+     }
+
+        .menu-i{ 
+            
+            display: none;
+             
+               
+          
+          
+          }
+
+
+          .menu-t{ 
+            
+            text-align: center;
+             
+               
+          
+          
+          }
+
+          
+          .menu-pai{ 
+            
+            max-width: 100%;;
+             
+               
+          
+          
+          }
+
+          
+          .rodape{ 
+            
+            max-width: 100%;
+            text-align: center;
+            
+               
+          
+          
+          }
+
+          
+    
+
+
+
+
+
+}
+
+@media only  screen   and  (min-width:1885px) { 
+
+    .dropdown1{ 
+            
+        display:none;
+         
+           
+      
+      
+      }
+
+      .dropdown{ 
+            
+        display:none;
+         
+           
+      
+      
+      }
+
+
+
+
+}
+

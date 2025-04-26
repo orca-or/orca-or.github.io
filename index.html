@@ -1,0 +1,2821 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author"   content="Karlos kiala ">
+    <meta name="keywords" content="orçamento,
+    determinação de custo de material,levantamento de quantidade de material,como determinar a quantidade de
+    brita,areia,cimento,mão de obra,concreto,
+    quantidade de blocos,número de blocos,tinta,azulejos,quantidade da cobertura,área da cobertura,área da alvenária
+    volume de betão,volume de argamassa">
+    <meta name="description" content="Site de orçamento de construção civil" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"   href="estilo.css">
+    <link rel="stylesheet" href="responsivo.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    
+    <link rel="icon" type="image/png" href="img/orça.png">
+    <title>Orça</title>
+</head>
+
+<body>
+
+    <nav  class="menu-pai">
+        
+
+
+        <li class="dropdown" id="dro">
+            <a class="dropbtn" href="#"  style="padding: 0px;" onclick="toggleMenu(event)" title="menu"><img src="img/menu.png" alt="abrir menu"></a>
+    
+            <div class="dropdown-content" id="filho">
+                <h2 style="margin-left: 30px;">Menu</h2>
+                <a href="index.html" class="content">Início</a>
+                <a href="#" class="content" onclick="selecionarItem(); custo()">Custo do material</a>   
+                <a href="#" class="content" onclick="selecionarItem(); maodeobra()">Mão de obra</a> 
+                <a href="#" class="content" onclick="selecionarItem(); pc()">Pc</a> 
+                <a href="#" class="content" onclick="selecionarItem(); planilha()">Planilha</a> 
+                <a href="#" class="content" onclick="selecionarItem(); factor()">Consulta </a>
+                
+                <h2 style="margin-left: 30px;">Levantamento de quantidade</h2>
+    
+                <a href="#" class="content" onclick="selecionarItem(); chamada16()">Área da Alvenária</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada1()">Quantidade de blocos</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada2()">Volume de assentamento do blocos</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada3()">Área do chapisco e reboco </a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada4()">Volume para chapisco </a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada18()">Volume para reboco </a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada5()">Volume total de argamassa</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada6()">Área por perímetro</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada7()">Perímetros</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada8()">Área dos vãos</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada9()">Volume de betão (viga, fundação)</a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada10()">Quantidade de Cimento </a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada11()">Quantidade de Areia</a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada17()">Quantidade de Brita</a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada12()">Quantidade de Tinta</a>
+                <a href="#" class="content" onclick="selecionarItem(); chamada13()">Quantidade de azulejos </a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada14()">Área da Cobertura </a> 
+                <a href="#" class="content" onclick="selecionarItem(); chamada15()">Quantidade para cobertura</a>
+                <a href="#" class="content" onclick="selecionarItem(); tabela()" style="font-weight: bold;margin-top: 10px;">Instrução </a>
+                <a href="#" class="content" onclick="selecionarItem(); tabela1()" style="font-weight: bold;margin-top: 10px;"> Descrição</a>
+            </div>
+        </li>
+
+        <li class="dropdown1">
+            <a class="dropbtn" href="#" id="toggleMenu" style="padding: 4px;">Dados</a>
+            <div class="dropdown-contente" id="filho2" >
+                <div style="width: 285px; float: left; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                 0 6px 20px 0 rgba(0,0,0,0.19);
+                margin-right: 5px; overflow-y: scroll; overflow-x: hidden; height: 100%;" >
+                    <h2 style="text-align: left; margin-top: 1px; margin-left: 5px; float: left; width: 100px; ">Dados</h2>
+                    <button style="text-align: left; margin-top: 5px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                 0 6px 20px 0 rgba(0,0,0,0.19);display: none;
+                     margin-left: 65px; float: left; width: 90px;background-color: black;color: white; "
+                     onclick="apagar()" id="re">Recomeçar</button>
+     <table  style="width: 280px;float: left;margin-top: 10px;margin-bottom: 5px;margin-left: 5px;text-align: center;">
+    <th>Item  </th>
+    <th style="margin-left: 70px;">Quantidade</th>
+    <th> Un</th>
+    
+     </table>
+    
+     
+     <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: 5px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">A.al=</p>  
+    <p name="" id="Resultado1" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div>
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Nb=</p>  
+    <p name="" id="Resultado" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">V.ass =</p>  
+    <p name="" id="Resultado2" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">A.cr =</p>  
+    <p name="" id="Resultado3" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div>
+    
+    <div style="
+     
+    width: 2800px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">V.c =</p>  
+    <p name="" id="Resultado4" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">V.r =</p>  
+    <p name="" id="Resultado19" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">V.ta =</p>  
+    <p name="" id="Resultado5" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div><div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Ap =</p>  
+    <p name="" id="Resultado6" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div><div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">P =</p>  
+    <p name="" id="Resultado7" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m </p>
+    
+    
+    </div>
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Av =</p>  
+    <p name="" id="Resultado8" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div>
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">V.b =</p>  
+    <p name="" id="Resultado9" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qci =</p>  
+    <p name="" id="Resultado10" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+    
+    
+    </div>
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qs =</p>  
+    <p name="" id="Resultado18" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+    
+    
+    </div>
+    
+    
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">QA =</p>  
+    <p name="" id="Resultado11" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+
+
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qpa =</p>  
+    <p name="" id="Resultado20" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+    
+    
+    </div>
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qb =</p>  
+    <p name="" id="Resultado17" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qbp =</p>  
+    <p name="" id="Resultado21" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+    
+    
+    </div>
+    
+    
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">QT =</p>  
+    <p name="" id="Resultado13" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">L</p>
+    
+    
+    </div>
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qap =</p>  
+    <p name="" id="Resultado12" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+    
+    
+    </div>
+    
+    
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qac=</p>  
+    <p name="" id="Resultado15" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div>
+    
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Ac =</p>  
+    <p name="" id="Resultado14" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+    
+    
+    </div>
+    <div style="
+     
+    width: 280px;height: 70px;margin-left: 4px;float: left;text-align: center;
+    float: left;margin-top: -20px;">
+    <p style="float: left;height: 20px;width: 50px;margin-top: 25px;margin-left: 5px;">Qc =</p>  
+    <p name="" id="Resultado16" style="
+    width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+    
+    
+    </p>
+    <p style="float: left;height: 20px;width: 30px;margin-top: 20px; ">m <sup>2</sup></p>
+    
+    
+    </div>
+    
+    </div>
+    
+    
+        </li>
+    
+
+    <div  class="menu-t"> 
+         <h1  style="padding: 1px;margin-top: 15px;">ORÇA</h1> 
+         </div>
+
+         <div   class="menu-i"> 
+        <a href="index.html" class="ele-2">Início</a>
+        
+   
+    <a href="#" class="ele-2" onclick="custo()">Custo do material</a>   
+        
+        <a href="#" 
+        ; class="ele-2" onclick="maodeobra()">Mão de obra</a> 
+        
+        <a href="#"  class="ele-2" onclick="pc()">Pc</a> 
+
+<a href="#"  class="ele-2" onclick="planilha()">Planilha</a> 
+
+        <a href="#" class="ele-2"  onclick="factor()">Consulta </a> 
+        
+
+
+
+    </div>
+       
+    </nav>
+
+    <section style="display: flex;height: 188px;flex-flow:
+     row wrap;box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+     justify-content: center;justify-items: center;">
+
+
+        <div style="
+        width: 100%; height: 184px;margin: 
+        1px;justify-content: center;display: flex;
+        box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19)
+        ;" class="pub2">
+        
+            <h2 style="text-align: center;width: 100%;padding: 60px 10px;">Publicidade</h2>
+        </div>
+        
+
+    </section>
+
+    <header style="display: flex;height: 790px;flex-flow: row wrap;" >
+
+
+        
+
+        <div style="float: left;width: 460px;height: 600px;margin-left: 50px;
+         box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);margin-top:
+          30px;overflow-y: auto;" class="lista">
+            <h2 style="text-align: justify;margin-top: 3px;margin-left: 10px;
+             box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); ">Levantamento de quantidade</h2>
+        <ul class="" >
+
+            <li onclick="chamada16()" id="16"><a href="#" class="ele">Área da Alvenária</a></li>
+            <li onclick="chamada1()" id="1"><a href="#" class="ele">Quantidade de blocos</a></li>
+            <li onclick="chamada2()" id="2"><a href="#"class="ele">Volume de assentamento do blocos</a></li>
+            <li onclick="chamada3()" id="3"><a href="#"class="ele">Área do chapisco e reboco </a></li>
+            <li onclick="chamada4()" id="4"><a href="#"class="ele">Volume para chapisco </a></li>
+            <li onclick="chamada18()" id="18"><a href="#"class="ele">Volume para reboco </a></li>
+            <li onclick="chamada5()" id="5"><a href="#"class="ele">Volume total de argamassa</a></li>
+            <li onclick="chamada6()" id="6"><a href="#"class="ele">Área por perímetro</a></li>
+            <li onclick="chamada7()" id="7"><a href="#"class="ele">Perímetros</a></li>
+            <li onclick="chamada8()" id="8"><a href="#"class="ele">Área dos vãos</a></li>
+            <li onclick="chamada9()" id="9"><a href="#"class="ele">Volume de betão(viga,fundação) </a> </li>
+            <li onclick="chamada10()" id="10"><a href="#"class="ele">Quantidade de Cimento </a> </li>
+            <li onclick="chamada11()" id="11"><a href="#"class="ele">Quantidade de Areia</a> </li>
+            <li onclick="chamada17()" id="17"><a href="#"class="ele">Quantidade de Brita</a> </li>
+            <li onclick="chamada12()" id="12"><a href="#"class="ele">Quantidade de Tinta</a> </li>
+            <li onclick="chamada13()" id="13"><a href="#"class="ele">Quantidade de azulejos </a> </li>
+            <li onclick="chamada14()" id="14"><a href="#"class="ele">Área da Cobertura </a> </li>
+            <li onclick="chamada15()" id="15"><a href="#"class="ele"> Quantidade para cobertura   </a> </li>
+            <li onclick="tabela()" style="margin-top: 10px;"><a href="#" style="font-weight: bold;margin-top: 10px;"class="ele">Instrução</a> </li>
+            <li onclick="tabela1()" style="margin-top: 10px;"><a href="#" style="font-weight: bold;margin-top: 10px;"class="ele"> Descrição</a> </li>
+            
+        </ul>
+        
+        </div>
+
+<div style="width: 290px;float: left;
+box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);margin-right:
+ 5px;overflow-y: scroll;overflow-x: hidden;height: 
+ 600px;margin-left: 10px;margin-top:
+  30px;"
+  id="dados" class="dados">
+
+ <h2 style="text-align: left;margin-top: 1px;margin-left: 5px;float: left;width: 100px;">Dados</h2>
+ <button style="text-align: left;margin-top: 5px;margin-left: 65px;float: left;width: 90px; background-color:
+  black;color: white;box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  display: none;
+  " onclick="apagar()" id="Re">Recomeçar</button>
+
+ <table style="width: 270px;float: left;margin-top: 10px;margin-bottom: 5px;">
+<th>Item  </th>
+<th>Quantidade</th>
+<th> Un</th>
+
+ </table>
+
+ 
+ <div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: 5px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">A.al=</p>  
+<p name="" id="resultado1" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Nb=</p>  
+<p name="" id="resultado" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">V.ass =</p>  
+<p name="" id="resultado2" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">A.cr =</p>  
+<p name="" id="resultado3" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">V.c =</p>  
+<p name="" id="resultado4" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">V.r =</p>  
+<p name="" id="resultado19" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">V.ta =</p>  
+<p name="" id="resultado5" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div><div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Ap =</p>  
+<p name="" id="resultado6" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div><div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">P =</p>  
+<p name="" id="resultado7" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m </p>
+
+
+</div><div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Av =</p>  
+<p name="" id="resultado8" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div><div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">V.b =</p>  
+<p name="" id="resultado9" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qci =</p>  
+<p name="" id="resultado10" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+
+
+</div>
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qs =</p>  
+<p name="" id="resultado18" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+
+</div>
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">QA =</p>  
+<p name="" id="resultado11" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+
+
+</div>
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qpa =</p>  
+<p name="" id="resultado20" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+
+
+</div>
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qb =</p>  
+<p name="" id="resultado17" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>3</sup></p>
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qbp =</p>  
+<p name="" id="resultado21" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">Kg</p>
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">QT =</p>  
+<p name="" id="resultado13" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">L</p>
+
+
+</div>
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qap =</p>  
+<p name="" id="resultado12" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div>
+
+
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qac=</p>  
+<p name="" id="resultado15" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div>
+
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Ac =</p>  
+<p name="" id="resultado14" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px;">m <sup>2</sup></p>
+
+
+</div>
+<div style="
+ 
+width: 275px;height: 70px;margin-left: 4px;float: left;text-align: center;
+float: left;margin-top: -20px;">
+<p style="float: left;height: 20px;width: 50px;margin-top: 25px;">Qc =</p>  
+<p name="" id="resultado16" style="
+width: 180px;height: 40px;margin-left: 5px;float: left;text-align: center;float: left;padding: 8px;" > 
+
+
+</p>
+<p style="float: left;height: 20px;width: 30px;margin-top: 20px; ">m <sup>2</sup></p>
+
+
+</div>
+
+</div>
+
+<div style="float: left ;width: 800px;
+       height: 600px;margin-right: 1px;align-items: center;align-content: center;
+       box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);text-align: 
+       center ;margin-left: 0px;justify-content: center;overflow-y:auto ;margin-top: 30px;" 
+       id="centro" class="centro">  
+       <h2>Bem vindo à Orça</h2>
+       <p>Selecçione uma formula para começar</p>
+
+       
+       
+    
+    </div>
+
+ 
+
+
+<div style="float: left;width: 220px;
+height: 600px;margin-left: 15px;align-items: center;align-content: center;
+box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+text-align: center;margin-top: 2px;margin-top: 30px;"  class="pub "> 
+<h2>Publicidade</h2>  
+
+</div>
+    </header>
+
+    <section style="display: flex;height: 200px; flex-flow: 
+    row wrap;border: 1px solid red;display: none;">
+
+
+
+
+<div style="width: 400px;
+;align-content: center;border: 1px solid black;display: none;position: relative;" id="nb" class="centro-item">
+   <h2 style="text-align: center;">Número de blocos</h2>
+<form action=""  style="align-content: center;" class="centro-item" >  
+<label for="area">Aal</label>
+<input type="text" name="" id="area"><br><br>
+<label for="comprimento">B1</label>
+<input type="text" name="" id="comprimento">
+<label for="espessura">EV</label>
+<input type="text" name="" id="espessura"><br><br>
+<label for="largura">B2</label>
+<input type="text" name="" id="largura">
+<label for="altura">EH</label>
+<input type="text" name="" id="altura"><br><br>
+</form>
+
+<button type="button" onclick="blocos()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;" id="volume"> 
+<h2 >Volume de assentamento</h2>
+<form action="" >  
+<label for="area2">Aal</label>
+<input type="text" name="" id="area2"><br><br>
+<label for="numero">Nb</label>
+<input type="text" name="" id="numero">
+<label for="b1">B1</label>
+<input type="text" name="" id="b1"><br><br>
+<label for="b2">B2</label>
+<input type="text" name="" id="b2">
+<label for="b3">B3</label>
+<input type="text" name="" id="b3"><br><br>   
+</form>
+<button type="button" onclick="assentamento()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;
+border: 1px solid black;margin-top: -150px;" id="chapisco">  
+
+<h2 >Área de chapisco e Reboco</h2>
+
+<form action="" >  
+<label for="area3">Aal</label>
+<input type="text" name="" id="area3"><br><br>
+
+</form>
+<button type="button" onclick="chapisco()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+<div style="display: none;width: 500px;border: 1px solid black;
+left: 25%;top: 25%;align-content: center;text-align: center;align-items: center;" id="vcr"> 
+
+<h2>Volume de argamassa para chapisco </h2>
+<form action="" >  
+<label for="acr">A.c</label>
+<input type="text" name="" id="acr">
+<label for="ecr">E.c</label>
+<input type="text" name="" id="ecr"><br><br>   
+</form>
+<button type="button" onclick="reboco()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+
+<div style="display: none;width: 500px;border: 1px solid black;
+left: 25%;top: 25%;align-content: center;text-align: center;align-items: center;" id="vr"> 
+
+<h2>Volume de argamassa para reboco</h2>
+<form action="" >  
+<label for="ar">A.r</label>
+<input type="text" name="" id="ar">
+<label for="er">E.r</label>
+<input type="text" name="" id="er"><br><br>   
+</form>
+<button type="button" onclick="reboco1()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;" id="vta">   
+
+<h2>Volume total de argamassa</h2>
+<form action=""  >  
+<label for="ass">V.ass</label>
+<input type="text" name="" id="ass">
+<label for="chap">V.c</label>
+<input type="text" name="" id="chap">
+<label for="reb">V.r</label>
+<input type="text" name="" id="reb"><br><br>   
+</form>
+<button type="button" onclick="volumetotal()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+ </div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;" id="ap">  
+
+<h2>Área por perímetro</h2>
+<form action="" >  
+<label for="pe">P</label>
+<input type="text" name="" id="pe">
+<label for="h">H</label>
+<input type="text" name="" id="h">
+<label for="vao">Av</label>
+<input type="text" name="" id="vao"><br><br>
+</form>
+<button type="button" onclick="area()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;" id="sm">  
+
+<h2 >Soma dos perímetros</h2>
+<input type="text"  id="lk5"  style="width: 35%;height: 10%;" placeholder="p1+p2+p3+p4+p5..."> <br><br>
+<label for="lk5"><button type="button" onclick="perimetro()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button></label>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;" id="av">  
+
+<h2 >Área dos vãos</h2>
+<input type="text"  id="lk4"  style="width: 35%;height: 10%;" placeholder="(l*h)+(l2*h2)+(l3*h3)..."> <br><br>
+<label for="lk4"><button type="button" onclick="vao()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button></label>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="vsv">  
+
+<h2 >Volume de betão para sapatas,vigas e pilares </h2>
+<form action="" >  
+<label for="c">C</label>
+<input type="text" name="" id="c">
+<label for="l">L</label>
+<input type="text" name="" id="l">
+<label for="a">H </label>
+<input type="text" name="" id="a"><br><br>
+</form>
+<button type="button" onclick="betao()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="cm">  
+
+<h2 >Quantidade de Cimento por kilo</h2>
+<form action="">  
+<label for="qc1">Coe</label>
+<input type="text" name="" id="qc1">
+<label for="qc2">V.ass</label>
+<input type="text" name="" id="qc2"><br><br>
+</form>
+<button type="button" onclick="cimento()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="cm1">  
+
+<h2 >Quantidade de Cimento por sacos</h2>
+<form action="" >  
+<label for="qc3">Qci</label>
+<input type="text" name="" id="qc3">
+<label for="qc4">Qs</label>
+<input type="text" name="" id="qc4"><br><br>
+</form>
+<button type="button" onclick="cimento1()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="qar">  
+
+<h2 >Quantidade de Areia</h2>
+<form action=""  >  
+<label for="car1">Coe</label>
+<input type="text" name="" id="car1">
+<label for="var2">V.ass</label>
+<input type="text" name="" id="var2"><br><br>
+</form>
+<button type="button" onclick="areia()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="qar1">  
+
+<h2 >Quantidade de Areia por peso</h2>
+<form action="" >  
+<label for="avr3">V</label>
+<input type="text" name="" id="avr3">
+<label for="adr4">D</label>
+<input type="text" name="" id="adr4"><br><br>
+</form>
+<button type="button" onclick="areiapeso()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="bt01">  
+
+<h2 >Quantidade de brita por peso</h2>
+<form action="" >  
+<label for="qbt3">V</label>
+<input type="text" name="" id="qbt3">
+<label for="qbt4">D</label>
+<input type="text" name="" id="qbt4"><br><br>
+</form>
+<button type="button" onclick="britapeso()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="Bt">  
+
+<h2>Quantidade de Brita</h2>
+<form action=""  >  
+<label for="qbt1">Coe</label>
+<input type="text" name="" id="qbt1">
+<label for="qbt2">V.ass</label>
+<input type="text" name="" id="qbt2"><br><br>
+
+</form>
+<button type="button" onclick="brita()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="area0">  
+
+<h2 >Área da Alvenária</h2>
+<form action=""  >  
+<label for="area01">C</label>
+<input type="text" name="" id="area01">
+<label for="area02">L</label>
+<input type="text" name="" id="area02"><br><br>
+
+</form>
+<button type="button" onclick="alvenaria()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="pct">  
+
+<h2 >Preço composto</h2>
+
+<table width="50%" border="2" style="margin-left: 30%;">
+
+<tr>
+   <th> Mt</th>
+   <th>Mo</th>
+</tr>
+
+<tr>
+<td id="mtt">00</td>
+<td id="mot">00</td>
+
+
+</tr>
+</table><br><br>
+
+<button type="button" onclick="somapc()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+   
+<div id="bc" style="width: 100%;position: fixed;
+left: 90%;top: 15%;align-content: center;display: none;" class="cb">
+
+<h2 style="text-align: center;">Área da Cobertura</h2> 
+
+<table width="90%" border="2" style="text-align: center;margin-left: 5%;height: 3%;font-size: 17px;">
+
+  <th colspan="7">  Área Rectangular</th>
+
+  <tr>   
+      <th>Area</th>
+      <th>Comprimento</th>
+      <th>Largura</th>
+      <th>Resultado</th>
+      <th>Factor da Inclinação</th>
+      <th>Area real</th>
+    
+  </tr>
+  
+  
+  <tr>
+
+   <td button >A1</td>
+   <td > <input type="text" id="ac1" style="width: 100%;height: 100%;"placeholder="insira"></td>
+   <td ><input type="text"  id="al1" style="width: 100%;height: 100%;"placeholder="insira"></td>
+   <td id="r1" onclick="rectangular()">=</td>
+   <td ><input type="text" id="in1"style="width: 100%;height: 100%;"placeholder="insira"></td>
+   <td id="ar1" onclick="real()">=</td>
+   
+  
+
+
+</tr>
+  
+
+  <tr>
+
+      <td >A2</td>
+      <td><input type="text" id="ac2"style="width: 100%;height: 100%;" placeholder="insira"></td>
+      <td><input type="text" id="al2"style="width: 100%;height: 100%;"placeholder="insira"></td>
+      <td id="r2"onclick="rectangular2()">=</td>
+      <td><input type="text" id="in2"style="width: 100%;height: 100%;"placeholder="insira"></td>
+      <td id="ar2" onclick="real2()">=</td>
+     
+
+
+  </tr>
+  <tr>
+
+      <td >A3</td>
+      <td><input type="text" id="ac3"style="width: 100%;height: 100%;" placeholder="insira"></td>
+      <td><input type="text" id="al3"style="width: 100%;height: 100%;"placeholder="insira"></td>
+      <td id="r3" onclick="rectangular3()">=</td>
+      <td><input type="text" id="in3"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+      <td id="ar3" onclick="real3()">=</td>
+     
+
+
+  </tr>
+  <tr>
+
+      <td >A4</td>
+      <td><input type="text" id="ac4"style="width: 100%;height: 100%;"placeholder="insira"></td>
+      <td><input type="text" id="al4"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+      <td id="r4"onclick="rectangular4()">=</td>
+      <td><input type="text" id="in4"style="width: 100%;height: 100%;" placeholder="insira"></td>
+      <td id="ar4" onclick="real4()">=</td>
+      
+
+
+  </tr>
+  <tr>
+
+      <td >A5</td>
+      <td><input type="text" id="ac5"style="width: 100%;height: 100%;" placeholder="insira"></td>
+      <td><input type="text" id="al5"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+      <td id="r5" onclick="rectangular5()">=</td>
+      <td><input type="text" id="in5"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+      <td id="ar5" onclick="real5()"> =</td>
+     
+
+
+  </tr>
+
+  <tr>
+<th colspan="6">  Area triangular</th>
+
+<tr >   
+<th>Area</th>
+<th>Altura</th>
+<th>Base</th>
+<th>Resultado</th>
+<th>Factor da Inclinação</th>
+<th>Area real</th>
+</tr>
+
+
+      </tr>
+
+      <tr>
+
+       <td >A1</td>
+       <td><input type="text" id="at1"style="width: 100%;height: 100%;" placeholder="insira"></td>
+       <td><input type="text" id="bt1"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+       <td id="r6" onclick="triangular()">=</td>
+       <td><input type="text" id="in6"style="width: 100%;height: 100%;" placeholder="insira"></td>
+       <td id="ar6" onclick="real6()">=</td>
+     
+
+
+   </tr>
+
+
+      <tr>
+
+          <td >A2</td>
+          <td><input type="text" id="at2"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td><input type="text" id="bt2"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="r7" onclick="triangular2()">=</td>
+          <td><input type="text" id="in7"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="ar7" onclick="real7()">=</td>
+        
+
+
+      </tr>
+      
+       <tr>
+
+          <td >A3</td>
+          <td><input type="text" id="at3"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+          <td><input type="text" id="bt3"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="r8"  onclick="triangular3()">=</td>
+          <td><input type="text" id="in8"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+          <td id="ar8" onclick="real8()">=</td>
+        
+
+
+      </tr>
+      <tr>
+
+          <td >A4</td>
+          <td><input type="text" id="at4"style="width: 100%;height: 100%;"placeholder="insira" ></td>
+          <td><input type="text" id="bt4"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="r9" onclick="triangular4()">=</td>
+          <td><input type="text" id="in9"style="width: 100%;height: 100%;" placeholder="insira" ></td>
+          <td id="ar9" onclick="real9()">=</td>
+         
+
+
+      </tr>
+      
+      <tr>
+
+          <td >A5</td>
+          <td><input type="text" id="at5"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td><input type="text" id="bt5"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="r10" onclick="triangular5()">=</td>
+          <td><input type="text" id="in10"style="width: 100%;height: 100%;" placeholder="insira"></td>
+          <td id="ar10" onclick="real10()">=</td>
+         
+
+
+      </tr>
+      
+      
+
+
+
+   <tr>
+       <td>  Somatorio total  </td>
+       <td rowspan="2" colspan="7" ><input type="text"  id="lk2"  style="width: 100%;height: 100%;"placeholder="insira">  </td>
+      
+       
+
+
+   </tr>
+   <tr>
+       
+       <td > <Button type="button" onclick="soma2()" style="border: 1px solid black;
+           width: 100%;height:100%;float: left;margin-left: 1px;margin-top: 1px;
+           background-color: black;color: white;font-weight: bold;text-align: center;">=</Button> </td>
+
+   </tr>
+  
+</table>
+
+</div>
+
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="ld">  
+
+<h2 >Quantidade de azulejos por peças</h2>
+<form action="" >  
+<label for="ld1">Aalv</label>
+<input type="text" name="" id="ld1">
+<label for="ld2">A.az</label>
+<input type="text" name="" id="ld2"><br><br>
+</form>
+<button type="button" onclick="azulejos()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="ld01">  
+
+<h2 >Quantidade de azulejos por caixa</h2>
+<form action="" >  
+<label for="ld3">Qp</label>
+<input type="text" name="" id="ld3">
+<label for="ld4">Qac</label>
+<input type="text" name="" id="ld4"><br><br>
+</form>
+<button type="button" onclick="azulejos1()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="pt">  
+
+<h2 >Quantidade de Tinta</h2>
+<form action=""  >  
+<label for="pt1">A.p</label>
+<input type="text" name="" id="pt1">
+<label for="pt2">N.d</label>
+<input type="text" name="" id="pt2">
+<label for="pt3">R.d</label>
+<input type="text" name="" id="pt3"><br><br>
+</form>
+<button type="button" onclick="tinta()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;align-content: center;float: left;" id="qpc">  
+
+<h2 >Quantidade de peças para cobertura</h2>
+<form action=""  >  
+<label for="qpc1">A.c</label>
+<input type="text" name="" id="qpc1">
+<label for="qpc2">Coe</label>
+<input type="text" name="" id="qpc2"><br><br>
+</form>
+<button type="button" onclick="cobertura()"  style="background-color: black;color:
+white;font-weight: bold;text-align: center; width: 40px;height: 40px;margin-left: 20px;"  >=</button>
+</div>
+   
+<div id="mo" style="width: 500px; align-content: center;display: none;"  >
+<h2 style="text-align: center;">Calculo da Mão de Obra</h2> 
+<table width="50%" border="2" style="text-align: center;
+margin-left: 8px;margin-right: 5px;
+height: 50%;font-size: 18px;"  >
+
+  
+
+  <tr>   
+      <th>Técnicos</th>
+      <th>Coeficiente</th>
+      <th>A.alvenaria</th>
+      <th>Quantidade</th>
+      <th>P.Unitário</th>
+      <th>Custo/Técnico</th>
+      <th>Número de Técnicos</th>
+      <th>Composto</th>
+      <th>Custo Total</th>
+  </tr>
+  
+  
+  <tr>
+
+      <td>Pedreiro</td>
+      <td><input type="text"  id="cp1"  style="width: 100%;height: 100%;text-align: center;" placeholder="insira"> </td>
+      <td><input type="text"  id="ap1"  style="width: 100%;height: 100%;" placeholder="insira"> </td>
+      <td id="qp1" onclick="qtm()">=</td>
+      <td><input type="text"  id="pup1"  style="width: 100%;height: 100%;" placeholder="insira"> </td>
+      <td id="ct1" onclick="ct()">=</td>
+      <td><input type="text"  id="nt1"  style="width: 100%;height: 100%;" placeholder="insira"> </td>
+      <td id="cnt1" onclick="cnt()">=</td>
+      <td rowspan="6" id="kl3"></td>
+
+
+  </tr>
+
+  <tr>
+
+      <td>Ajudante pedreiro</td>
+      <td><input type="text"  id="cp2"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td><input type="text"  id="ap2"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td id="qp2" onclick="qtm2()">=</td>
+      <td><input type="text"  id="pup2"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td id="ct2" onclick="ct2()">=</td>
+      <td><input type="text"  id="nt2"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td id="cnt2" onclick="cnt2()">=</td>
+
+
+  </tr>
+  <tr>
+
+      <td>Carpinteiro</td>
+      <td><input type="text"  id="cc1"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td><input type="text"  id="ca1"  style="width: 100%;height: 100%;text-align: center;"placeholder="insira"></td>
+      <td id="cq1" onclick="qtm3()">=</td>
+      <td><input type="text"  id="puc1"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="ct3" onclick="ct3()">=</td>
+      <td><input type="text"  id="nt3"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="cnt3" onclick="cnt3()">=</td>
+
+
+  </tr>
+  <tr>
+
+      <td>Ajudante Carpinteiro</td>
+      <td ><input type="text"  id="cc2" placeholder="insira" style="width: 100%;height: 100%;text-align: center;"></td>
+      <td><input type="text"  id="ca2" placeholder="insira" style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="cq2" onclick="qtm4()">=</td>
+      <td><input type="text"  id="puc2"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="ct4" onclick="ct4()" >=</td>
+      <td><input type="text"  id="nt4" placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td  id="cnt4" onclick="cnt4()">=</td>
+
+
+  </tr>
+  <tr>
+
+      <td>Ferreiro</td>
+      <td><input type="text"  id="cf1" placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td><input type="text"  id="af1"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="qf1" onclick="qtm5()">=</td>
+      <td><input type="text"  id="puf1"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="ct5" onclick="ct5()">=</td>
+      <td><input type="text"  id="nt5"placeholder="insira"  style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="cnt5" onclick="cnt5()">=</td>
+
+
+  </tr>
+
+  <tr>
+
+      <td>Ajudante Ferreiro</td>
+      <td><input type="text"  id="cf2" placeholder="insira" style="width: 100%;height: 100%;text-align: center;"></td>
+      <td><input type="text"  id="af2" placeholder="insira" style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="qf2" onclick="qtm6()">=</td>
+      <td><input type="text"  id="puf2" placeholder="insira" style="width:100%;height: 100%;text-align: center;"></td>
+      <td id="ct6" onclick="ct6()">=</td>
+      <td><input type="text"  id="nt6" placeholder="insira" style="width: 100%;height: 100%;text-align: center;"></td>
+      <td id="cnt6" onclick="cnt6()">=</td>
+
+
+  </tr>
+
+
+   <tr>
+       
+       <td  >  
+           Somátorio total
+       </td>
+       <td rowspan="2" colspan="9">
+       <input type="text"  id="lk3"  style="width: 100%;height: 100%;text-align: center;" placeholder="insira"> 
+    </td>
+       
+   </tr>   
+
+   <tr>
+<td > 
+<Button type="button" onclick="soma3()"  style="border: 1px solid black;
+width: 100%;height:100%;float: left;margin-left: 1px;margin-top: 1px;
+background-color: black;color: white;font-weight: bold;text-align: center;">=</Button> 
+</td>
+   </tr>
+</table>
+</div>
+<div> 
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 2%;align-content: center;float: left;border: 1px;overflow-y: scroll;" id="des" class="mo">   
+
+
+
+<h2 style="text-align: left;margin-left: 40px;margin-top: 70px;">  Como começar</h2>
+<p style="list-style-type: lower-roman;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 
+1.	Na coluna esquerda com o título levantamento de quantidade,está uma listas onde consta cada operação.
+Clicando em uma delas abrirá um formulario para inserção de dados; 
+    </p>
+
+ <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;" >	
+   2.	A cada caixa coloca-se os dados de acordo com os elementos
+    (para saberes o que siginifica cada abreviacção 
+   consulta a tabela de Descrição),introduza os dados;     
+</p>
+ <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+   3.	A seguir,clique no botão de igualdade para que a operação seja feita;
+ </p>
+ <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+   4.	Na secção dados aparecerá o resultado da operação.Junto do seu item,
+   como na imagem:
+       
+   
+
+</p> <img src="img/dados.png" alt="">
+
+
+     <h2 style="text-align: left;margin-left: 40px;margin-top: 50px;">Calculo da cobertura</h2>
+
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       Para calcular a 
+       área de uma cobertura ,o processo é o seguinte:</p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       1.Para começar,introduza os dados nas 
+       células de acordo com o
+        elemento,que são:largura e o comprimento na área rectangular e altura e base na área triangular;</p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       
+       2.	Na coluna resultado clique para efectuar a operação no botão igual;
+     </p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       3.	Para proseguir consulta a tabela de inclinação e coloque o valor  de acordo com 
+       a percentagem da inclinação,há um valor  factor para cada inclinação; 
+     </p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+
+       4.	introduza  este valor na  celula seguir ao resultado e clique no botão igual da área real para 
+       achar a área real;
+     </p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       5.	Após achar as áreas real de acordo com número de áreas que haver,faça o somatório total;
+     </p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       
+6.	Abaixo,insira os dados reais de cada área para achar o somotario total da cobertura; 
+
+     </p>   
+     <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+       7.	A seguir no quantitativo para a cobertura,coloque o valor da área real total achada que aparecerá 
+       na secção dados e  no coeficinte, 
+       consulte o valor de telhas ou chapas por metros quadros necessário,coloque no coeficiente e clique em igual.
+     </p>  
+     
+     <h2 style="text-align: left;margin-left: 40px;margin-top: 50px;"> 
+       Determinação de custos de material 
+       </h2>
+
+       <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+
+               Não tão diferente  a tabela anterior,para a determinação de custo,primeiro:
+       </p>
+       <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+
+           1.	Pega-se os dados levantado na secão dados e coloca-se na caixa de acordo com item.por
+exemplo blocos,coloque na quantidade,o número de bloco  calculado e no preço,o custo do
+material de acordo com os preços do mercado,e clique em igual para achar o composto;
+       </p>
+       <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+           
+2.	A seguir faz-se o somatório dos materias para achar o valor total dos materiais.
+       </p>
+       
+       <h2 style="text-align: left;margin-left: 40px;margin-top: 50px;"> 
+           Mão de obras
+           </h2>
+
+          
+
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+
+
+               
+           Do mesmo modo como na determinação de material, embora ser uma tabela diferenciada o processo é o mesmo.
+           </p>
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+               1.	Primeiro coloca-se o coeficiente de horas por metros quadro,consultando a tabela;
+           </p>
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+               2.	coloque a área da alvenária,valor calculado lá no principio,primeiro item na lista de dados;
+           </p>
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+               3.	Depois de achar a quantidade da hora,coloque o valor por cada hora para determinar o custo por cada
+                técnico ;
+
+           </p>
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+               4.	 Depois coloque a quantidade de técnicos e determina o composto para o número de tecnicos; 
+           </p>
+           <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+               
+5.	Para finalizar efectua-se o somatório para determinar o custo total  da mão de obra.
+           </p>
+
+           <h2 style="text-align: left;margin-left: 40px;margin-top: 50px;"> 
+               Preço composto(pc)
+               </h2>
+
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">
+                   
+                   Após isso, determina-se o preço composto (pc).Os dados são enviado directamente ao formulário,
+                   tanto faz o da mão de obra 
+                   como de materiais.Para isso,é só clicar no igual que a operação será efectuda 
+                   e abrirá o planilha orçamental,resumindo todos os dados ,constando nele:
+                       
+               
+               </p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 
+                   1.	Insumo;
+               </p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 2.	Unidade;</p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 3.	Quantidade;</p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;">4.	Preço unitário ;</p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 5.	Composto ;</p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 6.	Custo total pra obra;</p>
+               <p style="list-style-type: circle;margin-left: 40px;text-align: justify;margin-right: 70px;font-size: 20px;"> 
+                   7.	Clique em baixar e a tabela sera baixada .</p>
+
+                   <div>  
+
+
+
+                    <div style="display: none;width: 1000px;position: fixed;
+                    left: 25%;top: 2%;align-content: center;float: left;border: 1px;overflow-y: scroll;" id="descrição" class="mo">   
+                    
+                    <table width="80%" border="2" style="margin: 40px;font-size: 20px;height: 100%;margin-left: 12%;" id="ele">
+                        <h2 style="text-align: left;margin-left: 40px;margin-top: 50px;"> 
+                           Descrição dos elementos
+                           </h2>
+                        
+                        
+                        
+                        <tr >
+                        <th>Elementos</th>
+                        <th>Abriviações</th>
+                        <th>Descrição</th>
+                        </tr>
+                        
+                        <tr>
+                        <td style="padding-left: 25px;">Área da alvenária</td>
+                        <td>A.al</td>
+                        <td>Medida por metros quadrado resultado da multiplicação entre altura ou largura e o comprimento.</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                        <td>Número de blocos</td>
+                        <td>Nb</td>
+                        <td>Quantidade de blocos necessários para construção de paredes</td>
+                        
+                        </tr>
+                        
+                        
+                        <tr>
+                        <td>Altura</td>
+                        <td>H</td>
+                        <td>representa a altura que uma parede,viga,sapata ou pilar tem</td>
+                        
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                           <td>Comprimento</td>
+                           <td>C</td>
+                           <td>representa o comprimento de uma parede,viga,sapata ou pilar</td>
+                           
+                           </tr>
+                        
+                           
+                        <tr>
+                        <td>Largura</td>
+                        <td>L</td>
+                        <td>representa a largura de uma parede,viga,sapata ou pilar</td>
+                        
+                        </tr>
+                        
+                        
+                        
+                        <tr>
+                        <td>Comprimento do bloco</td>
+                        <td>B1</td>
+                        <td>representa o comprimento de um bloco</td>
+                        
+                        </tr>
+                        
+                        
+                        <tr>
+                        <td>Altura do bloco</td>
+                        <td>B2</td>
+                        <td>é a dimensão da altura de um bloco</td>
+                        
+                        </tr>
+                        
+                        
+                        <tr>
+                        <td>Largura do bloco</td>
+                        <td>B3</td>
+                        <td>é a dimensão da largura que um bloco tem</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                            <td>Quantidade de areia por peso</td>
+                            <td>Qap</td>
+                            <td>---</td>
+                            
+                            </tr>
+
+                            
+                        <tr>
+                            <td>Quantidade de brita por peso</td>
+                            <td>Qab</td>
+                            <td>---</td>
+                            
+                            </tr>
+
+                            <tr>
+                                <td>Quantidade de brita por metros cubicos </td>
+                                <td>Qb</td>
+                                <td>---</td>
+                                
+                                </tr>
+                                <tr>
+                                    <td>Quantidade de areia por metros cubico</td>
+                                    <td>Qa</td>
+                                    <td>---</td>
+                                    
+                                    </tr>
+                            
+                        
+                        
+                        <tr>
+                        <td>Junta Horizontal</td>
+                        <td>EH</td>
+                        <td>é o volume de assentamento horizontal.Ou seja, a quantidade de massa onde o bloco centa</td>
+                        
+                        </tr>
+                        
+                        
+                        <tr>
+                        <td>Junta vertical</td>
+                        <td>Ev</td>
+                        <td>é o volume de argmassa para junção  vertical entre blocos</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                        <td>Volume de assentamento de blocos</td>
+                        <td>V.ass</td>
+                        <td>Quantidade de argamassa (massa) necessária para constuçao de uma parede</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                        <td>Área de chapisco e reboco</td>
+                        <td>A.cr</td>
+                        <td>medida exata do espaço a ser chapiscado ou rebocado,dentro do comprimento,largura ou altura que uma parede tem </td>
+                        
+                        </tr>
+                        
+                        
+                        <tr>
+                        <td>Espessura de chapisco e reboco</td>
+                        <td>E.cr</td>
+                        <td>refere-se a grossura que o chapisco ou reboco terá</td>
+                        
+                        </tr>
+                        
+                        <tr>
+                           <td>Volume de chapisco e reboco</td>
+                           <td>V.cr</td>
+                           <td>Quantidade de argamassa (massa) necessária para chapisco e reobco de uma parede</td>
+                           
+                           </tr>
+                        
+                           <tr>
+                               <td>Volume total de argamasa</td>
+                               <td>V.ta</td>
+                               <td>Quantidade de argamassa precisa para construção de paredes,chapisco e reboco</td>
+                               
+                               </tr>
+                        
+                               <tr>
+                                   <td>Área do perímetro</td>
+                                   <td>Ap</td>
+                                   <td>é área de um espaço calculado pelo perimetro,altura e os vãos deste mesmo perímetro</td>
+                                   
+                                   </tr>
+                        
+                                   <tr>
+                                       <td>Perímetros</td>
+                                       <td>P</td>
+                                       <td>é a medida por comprimento de cada parede </td>
+                                       
+                                       </tr>
+                        
+                                       <tr>
+                                           <td>Área dos vãos</td>
+                                           <td>Av</td>
+                                           <td>São os espaços vagos contidas em uma parede,como janelas e portas.
+                                               É calculada pela multiplicação da altura e largura de cada vão</td>
+                        
+                                           
+                                           </tr>
+                        
+                                           <tr>
+                                               <td>Volume de betão</td>
+                                               <td>Vb</td>
+                                               <td>Quantidade de betão necessários para betonar (encher)vigas,pilares,sapatas e lajes</td>
+                                               
+                                               </tr>
+                        
+                                               <tr>
+                                                   <td>Quantidade de cimento</td>
+                                                   <td>Qci</td>
+                                                   <td>Quantidade de cimento precisa para ser usada em kilos</td>
+                                                   
+                                                   </tr>
+                        
+                        
+                                                   <tr>
+                                                       <td>Quantidade de cimento por sacos</td>
+                                                       <td>Qs</td>
+                                                       <td>Quantidade de cimento por sacos a ser comprada</td>
+                                                       
+                                                       </tr>
+                        
+                        
+                                                       <tr>
+                                                           <td>Quantidade de tinta</td>
+                                                           <td>Qt</td>
+                                                           <td>Quantidade de tinta necessária para pintura de uma espaço</td>
+                                                           
+                                                           </tr>
+                        
+                                                           <tr>
+                                                               <td>Quantidade de azulejos</td>
+                                                               <td>Qa</td>
+                                                               <td>Quantidade de peças de azulejos necessários para mosaicar uma espaço</td>
+                                                               
+                                                               </tr>
+                        
+                                                               <tr>
+                                                                   <td>Quantidade de azulejo por caixa</td>
+                                                                   <td>Qac</td>
+                                                                   <td>Quantidade de caixas de azulejos a ser comprada para a obra</td>
+                                                                   
+                                                                   </tr>      
+                                                                   
+                                                                   <tr>
+                                                                       <td>Área da cobertura</td>
+                                                                       <td>Ac</td>
+                                                                       <td>espaco necessário a cobrir </td>
+                                                                       
+                                                                       </tr>
+                        
+                                                                       <tr>
+                                                                           <td>Quantidade para cobertura</td>
+                                                                           <td>Qc</td>
+                                                                           <td>Quantidade de telhas ou chapas  necessários para cobertura</td>
+                                                                           
+                                                                           </tr>
+                                                                           <tr>
+                                                                               <td>Coeficiente</td>
+                                                                               <td>Coe</td>
+                                                                               <td>é o valor constânte da Quantidade de material por metros quadro necesário </td>
+                                                                               
+                                                                               </tr>
+                        
+                        
+                                                                               <tr>
+                                                                                   <td>Rendimento por demão</td>
+                                                                                   <td>Rd</td>
+                                                                                   <td>Quantidade de tinta usada por cada demão (camada) de pintura</td>
+                                                                                   
+                                                                                   </tr>
+                        
+                        
+                                                                                   <tr>
+                                                                                       <td>Área do azulejos</td>
+                                                                                       <td>A.az</td>
+                                                                                       <td>é espaço por metros quadrado de uma peça</td>
+                                                                                       
+                                                                                       </tr>
+                        
+                                                                                       <tr>
+                                                                                           <td>Número de demão</td>
+                                                                                           <td>Nd</td>
+                                                                                           <td>é o número de camada da pintura </td>
+                                                                                           
+                                                                                           </tr>
+                        
+                        
+                        
+                        </table>
+                        
+                        </div>
+
+
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 20%;align-content: center;float: left;border: 1px;" id="factor">   
+
+<h2 style="margin-top: 70px;">Coeficientes de materiais por metro quadrado</h2>
+
+<table width="50%" border="2" style="left: 30%;margin-top: 30px;margin-left:
+ 25%;margin-bottom: 5%;font-size: 20px;" >
+<tr >
+<th>Item</th>
+<th>Material</th>
+<th>Unidade</th>
+<th>Coeficientes</th>
+<th>Densidade</th>
+<th>Observação</th>
+</tr>
+
+
+<tr>
+
+<td>1</td>
+<td>Cimento</td>
+<td>Kg/m <sup>3</sup></td>
+<td>305</td>
+<td> ---</td>
+<td> ---</td>
+</tr>
+
+
+<tr>
+
+<td>2</td>
+<td>Areia</td>
+<td>m <sup>3</sup>/m <sup>3</sup></td>
+<td>0.515</td>
+<td>--- </td>
+<td>--- </td>
+</tr>
+
+
+<tr>
+
+<td>3</td>
+<td>Brita</td>
+<td>m <sup>3</sup>/m <sup>3</sup></td>
+<td>0.769</td>
+<td>---</td>
+<td>---</td>
+</tr>
+
+
+<tr>
+
+    <td>4</td>
+    <td>Areia seca</td>
+    <td>m<sup>3</sup></td>
+    <td>---</td>
+    <td>1500 a 1600</td>
+    <td> --</td>
+    
+    </tr>
+    
+    <td>5</td>
+    <td>Areia úmida</td>
+    <td>m<sup>3</sup></td>
+    <td>---</td>
+    <td>1700 à 1800</td>
+    <td>---</td>
+  
+    </tr>
+    
+    <td>6</td>
+    <td>Brita 0 e 1</td>
+    <td>m<sup>3</sup></td>
+    <td>---</td>
+    <td>1400 à 1500</td>
+    <td>Para britas finas</td>
+    </tr>
+    
+    <td>7</td>
+    <td>Brita 2</td>
+    <td>m<sup>3</sup></td>
+    <td>---</td>
+    <td>1500 à 1600</td>
+    <td>Para britas grossas</td>
+    </tr>
+</table>
+
+<table width="50%" border="2" style="left: 30%;margin-top: 30px;margin-left: 
+25%;margin-bottom: 5%;font-size: 20px;" >
+    <h2>Coeficientes de Telhas</h2>
+    
+    <tr >
+    <th>Item</th>
+    <th>Tipo de telhas</th>
+    <th>Unidade</th>
+    <th>Coeficientes por peças</th>
+    </tr>
+
+    <tr>
+
+        <td> 1</td>
+        <td>Romana</td>
+        <td>m <sup>2</sup></td>
+        <td>16</td>
+    </tr>
+
+    <tr>
+
+        <td> 2</td>
+        <td>Italiana</td>
+        <td>m <sup>2</sup></td>
+        <td>14</td>
+    </tr>
+
+    <tr>
+
+        <td> 3</td>
+        <td>Colonial pequena</td>
+        <td>m <sup>2</sup></td>
+        <td>24</td>
+    </tr>
+
+    <tr>
+
+        <td> 4</td>
+        <td>Colonial grande</td>
+        <td>m <sup>2</sup></td>
+        <td>16</td>
+    </tr>
+
+    
+    <tr>
+
+        <td> 5</td>
+        <td>Francesa</td>
+        <td>m <sup>2</sup></td>
+        <td>16</td>
+    </tr>
+
+    
+    <tr>
+
+        <td> 6</td>
+        <td>Portuguesa</td>
+        <td>m <sup>2</sup></td>
+        <td>17</td>
+    </tr>
+    
+    <tr>
+
+        <td> 7</td>
+        <td>Americana</td>
+        <td>m <sup>2</sup></td>
+        <td>12.5</td>
+    </tr>
+
+
+
+    </table>
+    
+    
+
+    <table width="50%" border="2" style="left: 30%;margin-top: 30px;margin-left: 
+    25%;margin-bottom: 5%;font-size: 20px;" >
+        <h2>Rendimento por demão de cada tinta</h2>
+        
+        <tr >
+        <th>Item</th>
+        <th>Tipo de tinta</th>
+        <th>Unidade</th>
+        <th>Rendimento por demão</th>
+        </tr>
+    
+        <tr>
+    
+            <td> 1</td>
+            <td>Tinta acrílica</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>10 a 12</td>
+        </tr>
+    
+        <tr>
+    
+            <td> 2</td>
+            <td>Tinta PVA (Interno)</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>10 à 12</td>
+        </tr>
+    
+        <tr>
+    
+            <td> 3</td>
+            <td>Tinta Sintética</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>8 à 10</td>
+        </tr>
+    
+        <tr>
+    
+            <td> 4</td>
+            <td>Tinta Epóxi</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>6 à 8</td>
+        </tr>
+
+        <tr>
+    
+            <td> 5</td>
+            <td>Tinta Esmalte</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>10 à 12</td>
+        </tr>
+
+        <tr>
+    
+            <td> 6</td>
+            <td>Tinta látex</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>8 à 10</td>
+        </tr>
+
+        <tr>
+    
+            <td> 7</td>
+            <td>Tinta verniz</td>
+            <td>m <sup>2</sup>/L</td>
+            <td>12 à 15</td>
+        </tr>
+
+    
+        </table>
+        
+        
+    
+    
+
+
+
+<table width="50%" border="2" style="height:100%;margin-left: 25%;font-size: 20px;margin-bottom: 5%;">
+
+<h2>Inclinação da cobertura,Graus e factores</h2>
+
+<tr>
+<th>Inclinação</th>
+<th>Graus</th>
+<th>Factor</th>
+</tr>
+
+
+<tr>
+
+<td>0%</td>
+<td>0</td>
+<td>1.000</td>
+</tr>
+
+<tr>
+
+<td>5%</td>
+<td>2.86</td>
+<td>1.000</td>
+</tr>
+
+<tr>
+
+<td>10%</td>
+<td>5.71</td>
+<td>1.005</td>
+</tr>
+
+<tr>
+
+<td>15%</td>
+<td>8.53</td>
+<td>1.011</td>
+</tr>
+
+<tr>
+
+<td>20%</td>
+<td>10.31</td>
+<td>1.020</td>
+</tr>
+
+<tr>
+
+<td>25%</td>
+<td>14.04</td>
+<td>1.011</td>
+</tr>
+<tr>
+
+<td>30%</td>
+<td>16.70</td>
+<td>1.044</td>
+</tr>
+
+<tr>
+
+<td>35%</td>
+<td>19.29</td>
+<td>1.059</td>
+</tr>
+
+<tr>
+
+<td>40%</td>
+<td>22.80</td>
+<td>1.077</td>
+</tr>
+
+<tr>
+
+<td>45%</td>
+<td>24.23</td>
+<td>1.097</td>
+</tr>
+
+<tr>
+
+<td>50%</td>
+<td>26.55</td>
+<td>1.118</td>
+</tr>
+
+<tr>
+
+<td>55%</td>
+<td>28.81</td>
+<td>1.141</td>
+</tr>
+
+<tr>
+
+<td>60%</td>
+<td>30.96</td>
+<td>1.166</td>
+</tr>
+<tr>
+
+<td>65%</td>
+<td>33.02</td>
+<td>1.193</td>
+</tr>
+
+<tr>
+
+<td>70%</td>
+<td>34.99</td>
+<td>1.221</td>
+</tr>
+
+<tr>
+
+<td>75%</td>
+<td>36.87</td>
+<td>1.250</td>
+</tr>
+
+<tr>
+
+<td>80%</td>
+<td>38.66</td>
+<td>1.281</td>
+</tr>
+
+<tr>
+
+<td>85%</td>
+<td>40.36</td>
+<td>1.312</td>
+</tr>
+
+<tr>
+
+<td>90%</td>
+<td>41.99</td>
+<td>1.345</td>
+</tr>
+
+<tr>
+
+<td>95%</td>
+<td>43.53</td>
+<td>1.379</td>
+</tr>
+
+<tr>
+
+<td>100%</td>
+<td>45.00</td>
+<td>1.414</td>
+</tr>
+</table>
+
+
+
+
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 20%;align-content: center;float: left;border: 1px;" id="tab">
+
+<h2>Determinação de custos de Materiais</h2>
+
+<table width="95%" border="2" style="text-align: center;margin-left: 20px;
+margin-top: 1px;height: 300px;float: left;font-size: 20px;"  >
+
+
+<tr   >
+    
+   <th > Item</th>
+   <th id="ml">Insumo</th>
+   <th  id="ml2" >Unidade</th>
+   <th id="ml3" >Quantidade</th>
+   <th id="ml4" >Preço unitario</th>
+   <th id="ml5" > composto</th>
+   <th  >Custo total</th>
+   
+
+
+</tr>
+
+<tr >
+<td >1</td>
+<td id="insu">Blocos</td>
+<td id="un0">m  <sup>2</sup></td>
+<td ><input type="text" style="width: 100%;height: 100%;" id="q1" placeholder="insira"></td>
+<td ><input type="text" style="width: 100%;height: 100%;" id="pc" placeholder="insira"></td>
+<td  id="cp" onclick="composto()" placeholder="clique">=</td>
+<td rowspan="11" id="vto"></td>
+
+
+</tr>
+
+
+   <tr >
+       <td>2</td>
+       <td>Volume de betão</td>
+       <td>m <sup>3</sup></td>
+       <td ><input type="text" style="width: 100%;height: 100%;" id="q3"  placeholder="insira"></td>
+       <td><input type="text" style="width: 100%;height: 100%;" id="pc3"  placeholder="insira"></td>
+       <td id="cp3" onclick="composto3()">=</td>
+     
+       
+       </tr>
+       
+       <tr >
+           <td>3</td>
+           <td>Cimento</td>
+           <td>kg</td>
+           <td ><input type="text" style="width: 100%;height: 100%;"  id="q4"  placeholder="insira"></td>
+           <td><input type="text" style="width: 100%;height: 100%;" id="pc4"  placeholder="insira"></td>
+           <td id="cp4" onclick="composto4()">=</td>
+           
+           </tr>
+
+           <tr >
+               <td>4</td>
+               <td>Areia</td>
+               <td>m <sup>3</sup></td>
+               <td><input type="text" style="width: 100%;height: 100%;" id="q5"  placeholder="insira" ></td>
+               <td><input type="text" style="width: 100%;height: 100%;" id="pc5"  placeholder="insira"></td>
+               <td id="cp5" onclick="composto5()">=</td>
+               
+               </tr>
+
+               <tr >
+                   <td>5</td>
+                   <td>Brita</td>
+                   <td>m <sup>3</sup></td>
+                   <td><input type="text" style="width: 100%;height: 100%;" id="q9"  placeholder="insira" ></td>
+                   <td><input type="text" style="width: 100%;height: 100%;" id="pc9"  placeholder="insira"></td>
+                   <td id="cp9" onclick="composto9()">=</td>
+                   
+                   </tr>
+               
+               <tr >
+                   <td>6</td>
+                   <td>Tinta</td>
+                   <td>m <sup>2</sup></td>
+                   <td ><input type="text" style="width: 100%;height: 100%;"  id="q6" placeholder="insira"></td>
+                   <td><input type="text" style="width: 100%;height: 100%;" id="pc6"  placeholder="insira"></td>
+                   <td id="cp6" onclick="composto6()">=</td>
+                   
+                   </tr> 
+                   
+                   <tr >
+                       <td>7</td>
+                       <td>Azulejos</td>
+                       <td>m <sup>2</sup></td>
+                       <td><input type="text" style="width: 100%;height: 100%;" id="q7"  placeholder="insira" ></td>
+                       <td><input type="text" style="width: 100%;height: 100%;" id="pc7"  placeholder="insira"></td>
+                       <td id="cp7" onclick="composto7()">=</td>
+                       
+                       </tr> <tr >
+                           <td>8</td>
+                           <td>Cobertura</td>
+                           <td>m <sup>2</sup></td>
+                           <td><input type="text" style="width: 100%;height: 100%;" id="q8" placeholder="insira" ></td>
+                           <td><input type="text" style="width: 100%;height: 100%;" id="pc8"  placeholder="insira"></td>
+                           <td id="cp8" onclick="composto8()">=</td>
+                           
+                               <tr>
+       <td > Somátorio total</td>
+       <td  rowspan="2" colspan="5"><input type="text" name="" id="lk"style="width: 100%;height: 100%;" placeholder="insira"></td>
+       
+       
+   </tr>
+
+   <tr>
+       <td ><button type="button" onclick="soma()"  style="border: 1px solid black;
+           width: 100%;height:100%;float: left;margin-left: 1px;margin-top: 1px;
+           background-color: black;color: white;font-weight: bold;text-align: center;">=</button>
+           </td>
+   </tr>
+</table>
+
+</div>
+
+
+<div style="display: none;width: 1000px;position: fixed;
+left: 25%;top: 25%;float: left;" id="contato">  
+
+<h2 >Fale connosco</h2>
+
+<p>
+  orça-inform@gmail.com
+
+</p>
+
+
+</div>
+
+
+
+<div id="planilha" style="float: left;margin-left: 300px;margin-top: 80px;
+;border: 1px solid black; width: 650px;height: 750px;align-content: center;display: none;overflow-y: scroll;" >
+
+<div style="float: left;width: 50%;margin-left:
+120px;;display: flex;justify-content: center;"> 
+   <h2 style="float: left;" id="pot">Planilha Orçamental</h2> </div>
+   
+<table width="95%" border="2" style="text-align: center;margin-left: 20px;
+margin-top: 1px;height: 5%;float: left;font-size: 20px;"  id="tama">
+
+
+<tr   id="">
+    
+   <th > Item</th>
+   <th id="">Insumo</th>
+   <th  id="" >Unidade</th>
+   
+   <th id="" >Quantidade</th>
+   <th id="" >Preço unitario</th>
+   <th id="" > composto</th>
+   <th id="" > Total</th>
+ 
+
+
+</tr>
+
+<tr >
+<td >1</td>
+<td >Blocos</td>
+<td >m <sup>2</sup></td>
+
+<td id="pl3">--</td>
+<td  id="pl4">--</td>
+<td  id="pl5">--</td>
+<td  id="kl" rowspan="15">--</td>
+
+
+</tr>
+
+   <tr >
+       <td>2</td>
+       <td>Volume de betão</td>
+       <td>m <sup>3</sup></td>
+       <td id="pl9">--</td>
+       <td id="pl10">--</td>
+       <td id="pl11">--</td>
+       
+       
+       </tr>
+       
+       <tr >
+           <td>3</td>
+           <td>Cimento</td>
+           <td>kg</td>
+           <td id="pl12">--</td>
+           <td id="pl13">--</td>
+           <td id="pl14">--</td>
+           
+           </tr>
+
+           <tr >
+               <td>4</td>
+               <td>Areia</td>
+               <td>m  <sup>3</sup></td>
+               <td id="pl15">--</td>
+               <td id="pl16">--</td>
+               <td id="pl17">--</td>
+               
+               </tr> 
+               
+               <tr >
+                   <td>5</td>
+                   <td>Brita</td>
+                   <td>m  <sup>3</sup></td>
+                   <td id="pl45">--</td>
+                   <td id="pl46">--</td>
+                   <td id="pl47">--</td>
+                   
+                   </tr>
+               
+               
+               <tr >
+                   <td>6</td>
+                   <td>Tinta</td>
+                   <td>m <sup>2</sup></td>
+                   <td id="pl18">--</td>
+                   <td id="pl19">--</td>
+                   <td id="pl20">--</td>
+
+                   
+                   
+                   </tr> 
+                   <tr >
+                       <td>7</td>
+                       <td>Azulejos</td>
+                       <td>m <sup>2</sup></td>
+                       <td id="pl21">--</td>
+                       <td id="pl22">--</td>
+                       <td id="pl23">--</td>
+                       
+                       </tr> 
+                       
+                       <tr >
+                           <td>8</td>
+                           <td>Cobertura</td>
+                           <td>m <sup>2</sup></td>
+                           <td id="pl24">--</td>
+                           <td id="pl25">--</td>
+                           <td id="pl26">--</td>
+                           
+                           </tr> <tr >
+                               <td>9</td>
+                               <td>Pedreiros</td>
+                               <td>h</td>
+                               <td id="pl27">--</td>
+                               <td id="pl28">--</td>
+                               <td id="pl29">--</td>
+                               
+                               </tr> 
+                               <tr >
+                                   <td>10</td>
+                                   <td>Ajudante do pedreiro</td>
+                                   <td>h</td>
+                                   <td id="pl30">--</td>
+                                   <td id="pl31">--</td>
+                                   <td id="pl32">--</td>
+                                   
+                                   </tr>
+
+                                   <tr >
+                                       <td>11</td>
+                                       <td>Carpinteiro</td>
+                                       <td>h</td>
+                                       <td id="pl33">--</td>
+                                       <td id="pl34">--</td>
+                                       <td id="pl35">--</td>
+                                       
+                                       </tr>
+                                       <tr >
+                                           <td>12</td>
+                                           <td>Ajudante do Carpinteiro</td>
+                                           <td>h</td>
+                                           <td id="pl36">--</td>
+                                           <td id="pl37">--</td>
+                                           <td id="pl38">--</td>
+                                           
+                                           </tr><tr >
+                                               <td>13</td>
+                                               <td>Ferreiro</td>
+                                               <td>h</td>
+                                               <td id="pl39">--</td>
+                                               <td id="pl40">--</td>
+                                               <td id="pl41" >--</td>
+                                               
+                                               </tr>
+                                               <tr >
+                                                   <td>14</td>
+                                                   <td>Ajudantes do ferreiro</td>
+                                                   <td>h</td>
+                                                   <td id="pl42">--</td>
+                                                   <td id="pl43">--</td>
+                                                   <td id="pl44">--</td>
+                                                   
+                                                   </tr>
+                                   
+
+           
+
+</table>
+
+
+        <button type="button" id="pdf" onclick="gerarPDF()"
+        style="padding: 20px;margin: 8px;background-color:
+         black;color:white  ;height: 40px;padding: 1px;width: 100px;position: relative;
+         box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+         ;">Baixar </button>
+
+
+
+  
+
+
+</div>
+
+
+<div style="width: 1000px;position: fixed;
+left: 25%;top: 25%;float: left;align-items: center;display: none;" id="poli">  
+
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px;  " > Política de Privacidade</h2> 
+<p class="politica"> A sua privacidade é importante para nós. É política da Orça respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site Orça, e outros sites que possuímos e operamos.</p> 
+
+<p class="politica"> Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.<p> 
+
+<p class="politica"> Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.</p> 
+
+<p class="politica"> Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.</p> 
+
+<p class="politica"> O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas  políticas de privacidade.</p> 
+
+<p class="politica"> Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.</p> 
+
+<p class="politica"> O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.</p> 
+
+<p class="politica"> 1. O serviço Google AdSense que usamos para veicular publicidade usa um cookie DoubleClick para veicular anúncios mais relevantes em toda a Web e limitar o número de vezes que um determinado anúncio é exibido para você.</p> 
+<p class="politica"> 2. Para mais informações sobre o Google AdSense, consulte as FAQs oficiais sobre privacidade do Google AdSense.</p> 
+<p class="politica"> 3.Utilizamos anúncios para compensar os custos de funcionamento deste site e fornecer financiamento para futuros desenvolvimentos. Os cookies de publicidade comportamental usados ​​por este site foram projetados para garantir que você forneça os anúncios mais relevantes sempre que possível, rastreando anonimamente seus interesses e apresentando coisas semelhantes que possam ser do seu interesse.</p> 
+<p class="politica"> 4. Vários parceiros anunciam em nosso nome e os cookies de rastreamento de afiliados simplesmente nos permitem ver se nossos clientes acessaram o site através de um dos sites de nossos parceiros, para que possamos creditá-los adequadamente e, quando aplicável, permitir que nossos parceiros afiliados ofereçam qualquer promoção que pode fornecê-lo para fazer uma compra.</p> 
+<h2 style="text-align: left;margin-left: 40px;margin-top: 50px; ">Compromisso do Usuário</h2>
+<p class="politica"> O usuário se compromete a fazer uso adequado dos conteúdos e da informação que a Orça oferece no site e com caráter enunciativo, mas não limitativo:</p> 
+
+<p class="politica"> A) Não se envolver em atividades que sejam ilegais ou contrárias à boa fé a à ordem pública;</p> 
+<p class="politica"> B) Não difundir propaganda ou conteúdo de natureza racista, xenofóbica, pixbet ou azar, qualquer tipo de pornografia ilegal, de apologia ao terrorismo ou contra os direitos humanos;</p> 
+<p class="politica"> C) Não causar danos aos sistemas físicos (hardwares) e lógicos (softwares) da Orça, de seus fornecedores ou terceiros, para introduzir ou disseminar vírus informáticos ou quaisquer outros sistemas de hardware ou software que sejam capazes de causar danos anteriormente mencionados.</p> 
+
+
+
+</div>
+
+
+
+
+<div style="width: 1000px;position: fixed;
+left: 25%;top: 25%;float: left;align-items: center; display: none;" id="termos">  
+
+
+
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; " > 1. Termos </h2> 
+<p class="politica">Ao acessar a Orça, concorda em cumprir estes termos de serviço, todas as leis e regulamentos aplicáveis ​​e concorda que é responsável pelo cumprimento de todas as leis locais aplicáveis. Se você não concordar com algum desses termos, está proibido de usar ou acessar este site. Os materiais contidos neste site são protegidos pelas leis de direitos autorais e marcas comerciais aplicáveis.</p>
+
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; "> 2. Uso de Licença</h2> 
+<p class="politica">É concedida permissão para baixar temporariamente uma cópia dos materiais (informações ou software) no site Orça, apenas para visualização transitória pessoal e não comercial. Esta é a concessão de uma licença, não uma transferência de título e, sob esta licença, você não pode: </p>
+
+<p class="politica"> 1. modificar ou copiar os materiais; </p>
+<p class="politica">2. usar os materiais para qualquer finalidade comercial ou para exibição pública (comercial ou não comercial); </p>
+<p class="politica">3.Tentar descompilar ou fazer engenharia reversa de qualquer software contido no site Orça; </p>
+<p class="politica">4.Remover quaisquer direitos autorais ou outras notações de propriedade dos materiais; ou transferir os materiais para outra pessoa ou 'espelhe' os materiais em qualquer outro servidor.</p>
+<p  class="politica">Esta licença será automaticamente rescindida se você violar alguma dessas restrições e poderá ser rescindida pela Orça em qualquer momento. Ao encerrar a visualização desses materiais ou após o término desta licença, você deve apagar todos os materiais baixados em sua posse, seja em formato eletrónico ou impresso.</p>
+
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; ">3. Isenção de responsabilidade</h2>
+<p class="politica">Os materiais no site Orça são fornecidos 'como estão'. A Orça não oferece garantias, expressas ou implícitas, e, por este meio, isenta e nega todas as outras garantias, incluindo, sem limitação, garantias implícitas ou condições de comercialização, adequação a um fim específico ou não violação de propriedade intelectual ou outra violação de direitos.</p>
+<p class="politica">Além disso, a Orça não garante ou faz qualquer representação relativa à precisão, aos resultados prováveis ​​ou à confiabilidade do uso dos materiais em seu site ou de outra forma relacionado a esses materiais ou em sites vinculados a este site.</p>
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; ">4. Limitações</h2>
+<p class="politica">Em nenhum caso a Orça ou seus fornecedores serão responsáveis ​​por quaisquer danos (incluindo, sem limitação, danos por perda de dados ou lucro ou devido a interrupção dos negócios) decorrentes do uso ou da incapacidade de usar os materiais na Orça, mesmo que  a Orça ou um representante autorizado da Orça tenha sido 
+    notificado oralmente ou por escrito da possibilidade de tais danos. Como algumas jurisdições não permitem limitações em garantias implícitas, ou limitações de responsabilidade por danos conseqüentes ou incidentais, essas limitações podem não se aplicar a você.</p>
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; ">Modificações</h2>
+<p class="politica">A Orça pode revisar estes termos de serviço do site a qualquer momento, sem aviso prévio. Ao usar este site, você concorda em ficar vinculado à versão atual desses termos de serviço.</p>
+
+<h2  style="text-align: left;margin-left: 40px;margin-top: 50px; ">Lei aplicável</h2>
+<p class="politica">Estes termos e condições são regidos e interpretados de acordo com as leis,e 
+você se submete irrevogavelmente à jurisdição exclusiva dos tribunais.</p>
+
+
+</div>
+
+</section>
+    
+        <footer style="bottom: 0px;
+        display: flex;
+        height: 120px;
+        flex-flow: row wrap; 
+        background-color:black;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        border-top: 5px solid red;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+        0 6px 20px 0 rgba(0,0,0,0.19);
+
+    " class="rodape">
+   
+   <div style="margin-right: 5px;margin-bottom: 3px;margin-left: 10px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+                 0 6px 20px 0 rgba(0,0,0,0.19)">         
+   <p style="text-decoration: none;color: white;padding-left:5px;font-size: 15px;margin-left:
+      20px;margin-bottom: 20px;;margin-bottom: 5px;"> &copy    
+      <script>document.write(new Date().getFullYear());</script>  - Todos direitos reservado a  
+     <a href="index.html" style="text-decoration: none;color: white;font-size: 
+     15px;margin-bottom: 15px;text-align:center;width: 50px;">  Orça</a> 
+      </p> 
+
+     
+    </div>
+     
+    <div style="margin-top: 1px;height: 50px;width: 400px;padding: 20px;
+    margin-left: 50px;margin-bottom: 4px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),
+    0 6px 20px 0 rgba(0,0,0,0.19)" >   
+     <a href="#" style="text-decoration: none;color: white;;font-size: 15px;margin-left:
+     1px;text-align: left;width: 120px;padding-top: 1px;margin-right: 20px;margin-top: 5px;" onclick="termos()"> 
+       Termos de Uso</a>  
+       <a href="#" style="text-decoration: none;color: white;;font-size: 15px;margin-left:
+       1px;text-align: left;width: 120px;padding-top: 1px;margin-right: 20px;margin-top: 5px;" onclick="politica()"> 
+         Política de Privacidade</a>  
+  
+        
+     <a href="#" style="text-decoration: none;color: white;padding-left:3px;font-size: 15px;margin-left:
+     1px;text-align: left;width: 100px;" onclick="contato()"> 
+       Contato</a>  
+    
+   
+</div>
+    
+      
+    </footer> 
+
+   
+</body>
+
+
+
+<script src="js/script.js">
+
+</script>
+
+</html>

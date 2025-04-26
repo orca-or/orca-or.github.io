@@ -1,0 +1,250 @@
+        
+*{
+    box-sizing:border-box ;
+    
+    
+    
+    }
+    
+    body{
+    overflow-y: auto;
+    margin: 0; 
+   
+    
+    }
+
+ 
+    .menu-pai{
+    
+        display: flex;
+        height: 100px;
+        flex-flow: row wrap;
+        background-color:black;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 0;
+        position: relative;
+        box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    
+        
+        
+        }
+
+
+
+        
+    .menu-t{
+    
+    margin-left: 10%; 
+    flex: 20%;
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin-bottom: 2px;
+    height: 90px;
+    
+   
+   
+
+  
+       
+        
+        }
+
+
+        
+    .menu-i{
+    
+        flex: 35%;
+        text-align: right;
+        padding: 10px;
+        margin-right: 10%;
+        margin-bottom: 5px;
+       
+       
+       
+    
+        
+        
+        }
+        
+    .ele-2{
+    
+        color: white;
+        text-decoration: none;
+font-size: 20px;
+padding: 20px  16px;
+
+    
+        
+        
+        }
+
+        
+
+
+    .ele{
+    
+     
+        width: 360px;
+        margin-top: 10px;
+        text-decoration: none;
+        color: black;
+        display: inline-block;
+        height: 30px;
+       
+        font-size: 24px;
+         
+        
+        }
+        
+
+    a:hover{ 
+        font-weight: bold; 
+        
+    }
+    li{ 
+        width: 85%;
+        margin-top: 5px;
+      
+      
+        height: 30px;
+margin-left: 1px;
+      
+    }
+
+    ul{ 
+        width: 92%;
+        list-style-type:symbols();
+        height: 92%;
+        margin-left: 5px;
+        margin-top: 5px;
+       
+        
+        
+    }
+    input {
+
+        width: 70px;
+        height: 70px;
+        text-align: center;
+        border: 2px solid;
+    }
+    th {
+
+        
+        margin-left: 2px;
+        text-align: center;
+
+}
+
+
+.menu-filho {
+    float: left;
+       
+    } 
+
+.content, .dropbtn {
+    display: inline-block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 20px;
+    
+    
+    } 
+    
+   
+    
+    
+        
+    
+     .dropdown {
+    display: inline-block;
+    width: 60px;
+    margin-left:15px;
+    margin-top: 0px;
+    margin-bottom: 3px;
+    height: 50px; 
+    } 
+    
+    .dropdown1 {
+        display: inline-block;
+        width: 60px;
+        margin-left:15px;
+        margin-top: 0px;
+        margin-bottom: 10px;
+        
+        } 
+        
+    
+    .dropdown-content {
+        display: none;
+        position: fixed;
+        background-color: white;
+        width:285px;
+        box-shadow:0 4px 8px 0 rgba(21, 19, 19, 0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        height: 50%;
+        overflow-y: scroll;
+        z-index: 1;
+        top: 10%;
+    }
+     .dropdown-content .content {
+    
+     color:black;
+     display: block;
+     text-align: left;
+    
+     
+    } 
+    .dropdown:hover .dropdown-content {
+        display: none;
+       
+    
+    } 
+.menu-filho {
+    float: left;
+       
+    } 
+     .content, .dropbtn {
+    display: inline-block;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    } 
+    
+    
+    
+    
+    
+    .dropdown-contente {
+        display: none;
+        position: fixed;
+        background-color: white;
+        width:285px;
+        box-shadow:0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+        height: 50%;
+        z-index: 1;
+        left: 1%;
+        top: 10%;
+    }
+     .dropdown-contente .content {
+    
+     color:black;
+     display: none;
+     text-align: left;
+     width: 285px;
+     
+    } 
+    
+
+    .politica{
+    list-style-type: circle;
+    margin-left: 40px;
+    text-align: justify;
+    margin-right: 70px;
+    font-size: 20px;
+} 

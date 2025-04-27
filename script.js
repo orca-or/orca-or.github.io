@@ -115,6 +115,18 @@ window.addEventListener('offline', verificarConexao);
 
 
 
+window.addEventListener('load', function() {
+  if (!navigator.onLine) {
+    alert("Você está offline.conecta-se a internet!");
+    
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.disabled = true);
+  }
+});
+
+
+
+
 function blocos() {
     
 

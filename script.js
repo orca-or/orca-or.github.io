@@ -89,11 +89,13 @@ function desbloquearSite() {
 }
 
 function verificarConexao() {
-  if (!navigator.onLine) {
-    bloquearSite();
-  } else {
-    desbloquearSite();
-  }
+  fetch("https://www.google.com/favicon.ico", { method: "HEAD", mode: "no-cors" })
+    .then(() => {
+      desbloquearSite();
+    })
+    .catch(() => {
+      bloquearSite();
+    });
 }
 
 // Checa quando o site carrega

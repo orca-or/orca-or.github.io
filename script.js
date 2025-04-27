@@ -1,5 +1,45 @@
 
 
+
+function verificarConexao() {
+  if (!navigator.onLine) {
+    let overlay = document.createElement('div');
+    overlay.id = 'offlineOverlay';
+    overlay.style.position = 'fixed';
+    overlay.style.top = '0';
+    overlay.style.left = '0';
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+    overlay.style.color = 'white';
+    overlay.style.display = 'flex';
+    overlay.style.flexDirection = 'column';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.fontSize = '24px';
+    overlay.style.zIndex = '9999';
+    overlay.innerHTML = `
+      <p>Você está offline!</p>
+      <p>Conecte-se à internet para usar o site.</p>
+    `;
+    document.body.appendChild(overlay);
+  } else {
+    let existingOverlay = document.getElementById('offlineOverlay');
+    if (existingOverlay) {
+      existingOverlay.remove();
+    }
+  }
+}
+
+// Checa quando o site carrega
+window.addEventListener('load', verificarConexao);
+
+// Checa sempre que a conexão mudar (voltar ou cair)
+window.addEventListener('online', verificarConexao);
+window.addEventListener('offline', verificarConexao);
+
+
+
 window.addEventListener('load', function() {
   if (!navigator.onLine) {
     alert("Você está offline. O uso das fórmulas não está disponível.");

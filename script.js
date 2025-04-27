@@ -1,4 +1,16 @@
 
+
+window.addEventListener('load', function() {
+  if (!navigator.onLine) {
+    alert("Você está offline. O uso das fórmulas não está disponível.");
+    
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach(btn => btn.disabled = true);
+  }
+});
+
+
+
 function blocos() {
     
 

@@ -89,7 +89,7 @@ function desbloquearSite() {
 }
 
 function verificarConexao() {
-  fetch("https://www.google.com/favicon.ico", { method: "HEAD", mode: "no-cors" })
+  fetch("favicon.ico", { method: "HEAD", mode: "no-cors" })
     .then(() => {
       desbloquearSite();
     })

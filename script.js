@@ -2150,6 +2150,23 @@ function contato() {
     });
 
 
+// Aguarda o carregamento
+window.onload = function() {
+    setTimeout(function() {
+        document.getElementById("cookieConsent").classList.add("show");
+    }, 2000); // 2 segundos
+};
+
+document.getElementById("acceptCookies").addEventListener("click", function() {
+    document.cookie = "cookies_accepted=true; path=/; max-age=" + 60*60*24*365;
+    document.getElementById("cookieConsent").style.display = "none";
+});
+
+document.getElementById("declineCookies").addEventListener("click", function() {
+    document.getElementById("cookieConsent").style.display = "none";
+});
+
+
 
  
    

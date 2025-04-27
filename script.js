@@ -1,35 +1,108 @@
 
 
+function bloquearSite() {
+  // Cria o overlay
+  let overlay = document.createElement('div');
+  overlay.id = 'offlineOverlay';
+  overlay.style.position = 'fixed';
+  overlay.style.top = '0';
+  overlay.style.left = '0';
+  overlay.style.width = '100%';
+  overlay.style.height = '100%';
+  overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+  overlay.style.color = 'white';
+  overlay.style.display = 'flex';
+  overlay.style.flexDirection = 'column';
+  overlay.style.justifyContent = 'center';
+  overlay.style.alignItems = 'center';
+  overlay.style.fontSize = '24px';
+  overlay.style.zIndex = '10000';
+  overlay.innerHTML = `
+    <p>Você está offline!</p>
+    <p>Conecte-se à internet para continuar usando o site.</p>
+  `;
+  document.body.appendChild(overlay);
+
+  // Desabilita todos os botões
+  const botoes = document.querySelectorAll('button');
+  botoes.forEach(botao => {
+    botao.disabled = true;
+    botao.style.opacity = '0.5';
+    botao.style.cursor = 'not-allowed';
+  });
+
+  // Desabilita todas as listas (por segurança)
+  const listas = document.querySelectorAll('ul, ol');
+  listas.forEach(lista => {
+    lista.style.pointerEvents = 'none';
+    lista.style.opacity = '0.5';
+  });
+
+  // Desabilita o menu
+  const menus = document.querySelectorAll('nav, header');
+  menus.forEach(menu => {
+    menu.style.pointerEvents = 'none';
+    menu.style.opacity = '0.5';
+  });
+
+  // Desabilita o rodapé
+  const rodapes = document.querySelectorAll('footer');
+  rodapes.forEach(rodape => {
+    rodape.style.pointerEvents = 'none';
+    rodape.style.opacity = '0.5';
+  });
+}
+
+function desbloquearSite() {
+  // Remove o overlay
+  const overlay = document.getElementById('offlineOverlay');
+  if (overlay) overlay.remove();
+
+  // Habilita todos os botões
+  const botoes = document.querySelectorAll('button');
+  botoes.forEach(botao => {
+    botao.disabled = false;
+    botao.style.opacity = '1';
+    botao.style.cursor = 'pointer';
+  });
+
+  // Habilita todas as listas
+  const listas = document.querySelectorAll('ul, ol');
+  listas.forEach(lista => {
+    lista.style.pointerEvents = 'auto';
+    lista.style.opacity = '1';
+  });
+
+  // Habilita o menu
+  const menus = document.querySelectorAll('nav, header');
+  menus.forEach(menu => {
+    menu.style.pointerEvents = 'auto';
+    menu.style.opacity = '1';
+  });
+
+  // Habilita o rodapé
+  const rodapes = document.querySelectorAll('footer');
+  rodapes.forEach(rodape => {
+    rodape.style.pointerEvents = 'auto';
+    rodape.style.opacity = '1';
+  });
+}
 
 function verificarConexao() {
   if (!navigator.onLine) {
-    let overlay = document.createElement('div');
-    overlay.id = 'offlineOverlay';
-    overlay.style.position = 'fixed';
-    overlay.style.top = '0';
-    overlay.style.left = '0';
-    overlay.style.width = '100%';
-    overlay.style.height = '100%';
-    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-    overlay.style.color = 'white';
-    overlay.style.display = 'flex';
-    overlay.style.flexDirection = 'column';
-    overlay.style.justifyContent = 'center';
-    overlay.style.alignItems = 'center';
-    overlay.style.fontSize = '24px';
-    overlay.style.zIndex = '9999';
-    overlay.innerHTML = `
-      <p>Você está offline!</p>
-      <p>Conecte-se à internet para usar o site.</p>
-    `;
-    document.body.appendChild(overlay);
+    bloquearSite();
   } else {
-    let existingOverlay = document.getElementById('offlineOverlay');
-    if (existingOverlay) {
-      existingOverlay.remove();
-    }
+    desbloquearSite();
   }
 }
+
+// Checa quando o site carrega
+window.addEventListener('load', verificarConexao);
+
+// Checa sempre que a conexão mudar (voltar ou cair)
+window.addEventListener('online', verificarConexao);
+window.addEventListener('offline', verificarConexao);
+
 
 // Checa quando o site carrega
 window.addEventListener('load', verificarConexao);

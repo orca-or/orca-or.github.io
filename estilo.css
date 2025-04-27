@@ -248,3 +248,79 @@ margin-left: 1px;
     margin-right: 70px;
     font-size: 20px;
 } 
+
+
+    .cookie-consent {
+        position: fixed;
+        bottom: 100px;
+        left: 70px; /* <<< trocamos "right" por "left" */
+        width: 350px; /* Largura reduzida */
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+        font-size: 14px;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateY(20px);
+        pointer-events: none;
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    /* Quando aparecer */
+    .cookie-consent.show {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+    
+    /* Estilo dos links */
+    .cookie-links {
+        margin-top: 10px;
+    }
+    
+    .cookie-links a {
+        display: inline-block;
+        
+        color: white;
+        font-size: 15px;
+        margin-right: 10px;
+        margin-top: 5px;
+        transition: color 0.3s;
+    }
+    
+    /* Hover nos links */
+    .cookie-links a:hover {
+        font-weight: bold;
+    }
+    
+    /* Botões */
+    .cookie-buttons {
+        margin-top: 15px;
+    }
+    
+    .cookie-btn {
+        background-color: #111;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        margin: 5px 5px 0 0;
+        cursor: pointer;
+        font-size: 14px;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    
+    /* Hover nos botões */
+    .cookie-btn:hover {
+        background-color: #222;
+    }
+    
+
+
+
+
+
+
+

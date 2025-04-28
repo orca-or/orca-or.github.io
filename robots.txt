@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://orca-or.github.io/sitemap.xml
